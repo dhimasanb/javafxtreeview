@@ -13,6 +13,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -36,6 +37,7 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         TreeItem<String> root = new TreeItem<>("Root", new ImageView(icon));
+        root.setExpanded(true); //Folder root terexpand
         
         TreeItem<String> nodeA = new TreeItem<>("node A", new ImageView(icon));
         TreeItem<String> nodeB = new TreeItem<>("node B", new ImageView(icon));
@@ -48,5 +50,13 @@ public class MainController implements Initializable {
         nodeA.getChildren().addAll(nodeA1,nodeB1,nodeC1);
         
         treeView.setRoot(root);
+    }
+    
+    // Event mouse click
+    public void mouseClick (MouseEvent mouseEvent){
+        if (mouseEvent.getClickCount() == 2) {
+            TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
+            System.out.println(item.getValue());
+        }
     }
 }
